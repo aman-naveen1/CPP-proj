@@ -1,0 +1,37 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+void removeWhitespace(string inputFile, string outputFile) {
+    ifstream inFile(inputFile);
+    ofstream outFile(outputFile);
+    char ch;
+
+    if (!inFile) {
+        cout << "Error opening input file.\n";
+        return;
+    }
+    if (!outFile) {
+        cout << "Error opening output file.\n";
+        return;
+    }
+
+    while (inFile.get(ch)) {
+        if (ch != ' ' && ch != '\t' && ch != '\n') {
+            outFile.put(ch);
+        }
+    }
+
+    inFile.close();
+    outFile.close();
+    cout << "Whitespace removed successfully!\n";
+}
+
+int main() {
+    string inputFile = "input.txt";
+    string outputFile = "output.txt";
+
+    removeWhitespace(inputFile, outputFile);
+
+    return 0;
+}
